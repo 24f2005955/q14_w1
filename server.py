@@ -21,10 +21,12 @@ def solve_challenge() -> str:
     digest = hashlib.sha256(f"{challenge}:{EMAIL}".encode("utf-8")).hexdigest()
     return digest[:16]
 
+import os
+
 if __name__ == "__main__":
     mcp.run(
         transport="http",
         host="0.0.0.0",
-        port=8000,
+        port=int(os.environ.get("PORT", 8000)),
         path="/mcp"
     )
